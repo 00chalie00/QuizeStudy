@@ -10,6 +10,9 @@ import Foundation
 
 struct QuizBrain {
     
+    var scoreNum = 0
+    var questionNum = 0
+    
     let quiz = [
         Question(q: "Which is the largest organ in the human body?", a: ["Heart", "Skin", "Large Intestine"], correctAnswer: "Skin"),
         Question(q: "Five dollars is worth how many nickels?", a: ["25", "50", "100"], correctAnswer: "100"),
@@ -23,6 +26,39 @@ struct QuizBrain {
         Question(q: "Where is Tasmania located?", a: ["Indonesia", "Australia", "Scotland"], correctAnswer: "Australia")
     ]
     
+    
+    mutating func getScore() -> Int {
+        return scoreNum
+    }
+    
+    func getQuestionText() -> String {
+        return quiz[questionNum].q
+    }
+    
+    func getBtnTitle() -> [String] {
+        return quiz[questionNum].a
+    }
+    
+    func getProgressrate() -> Float {
+        return Float(questionNum) / Float(quiz.count)
+    }
+    
+    mutating func socreNumCheck(answer: String) {
+        if answer == quiz[questionNum].correctAnswer {
+            scoreNum += 1
+            print(scoreNum)
+        } else {
+            return
+        }
+    }
+    
+    mutating func questionNumCheck() {
+        if questionNum + 1 < quiz.count {
+            questionNum += 1
+        } else {
+            questionNum = 0
+        }
+    }
     
 }//End Of The Struct
 

@@ -15,10 +15,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var choiceOne: UIButton!
     @IBOutlet weak var choiceTwo: UIButton!
     @IBOutlet weak var choiceThree: UIButton!
+    @IBOutlet weak var progressBar: UIProgressView!
     
-    var questionNum = 0
-    var scoreNum = 0
-    var questionStr = QuizBrain()
+    var quizIns = QuizBrain()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,30 +27,19 @@ class ViewController: UIViewController {
     
     
     @IBAction func choiseBtnPressed(_ sender: UIButton) {
-        if questionNum + 1 <= questionStr.quiz.count {
-            let btnTitle = sender.titleLabel?.text
-            
-            if btnTitle == questionStr.quiz[questionNum].correctAnswer {
-                questionNum += 1
-                scoreNum += 1
-                configureUI()
-            } else {
-                questionNum += 1
-                configureUI()
-            }
-        } else {
-            questionNum = 0
-            scoreNum = 0
-        }
+        let senderTxt = sender.titleLabel?.text
+        quizIns.socreNumCheck(answer: senderTxt!)
+        quizIns.questionNumCheck()
+        configureUI()
     }
     
     func configureUI() {
-        questionTxt.text = questionStr.quiz[questionNum].q
-        scoreLbl.text = String(scoreNum)
-        
-        self.choiceOne.setTitle(questionStr.quiz[questionNum].a[0], for: .normal)
-        self.choiceTwo.setTitle(questionStr.quiz[questionNum].a[1], for: .normal)
-        self.choiceThree.setTitle(questionStr.quiz[questionNum].a[2], for: .normal)
+        scoreLbl.text = String(quizIns.getScore())
+        questionTxt.text = quizIns.getQuestionText()
+        choiceOne.setTitle(quizIns.getBtnTitle()[0], for: .normal)
+        choiceTwo.setTitle(quizIns.getBtnTitle()[1], for: .normal)
+        choiceThree.setTitle(quizIns.getBtnTitle()[2], for: .normal)
+        progressBar.progress = quizIns.getProgressrate()
     }
     
 }//End Of The Class

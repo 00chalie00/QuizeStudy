@@ -107,6 +107,7 @@
                         <outlet property="choiceOne" destination="oVw-Hl-IRe" id="Acp-Tj-OEU"/>
                         <outlet property="choiceThree" destination="tbn-vQ-GyC" id="CwL-0H-R0C"/>
                         <outlet property="choiceTwo" destination="sFb-7d-B9T" id="QDW-I1-AfG"/>
+                        <outlet property="progressBar" destination="TXm-qh-7Xg" id="egx-36-0qJ"/>
                         <outlet property="questionTxt" destination="rSI-li-mhO" id="FBo-vr-Uyv"/>
                         <outlet property="scoreLbl" destination="LOv-gH-7fF" id="0bW-g4-W7F"/>
                     </connections>
